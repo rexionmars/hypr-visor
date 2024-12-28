@@ -8,4 +8,5 @@ dependencies = [
     "numpy>=2.2.1",
     "opencv-python>=4.10.0.84",
     "pyqt5>=5.15.11",
+    "ultralytics>=8.3.23",
 ]
