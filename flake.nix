@@ -13,6 +13,24 @@
       in
       {
         devShells.default = import ./shell.nix { inherit pkgs; };
+        
+        # Adicionar um pacote construível
+        packages.default = pkgs.python3Packages.buildPythonPackage {
+          pname = "hypr-camera";
+          version = "0.1.0";
+          src = ./.;
+          propagatedBuildInputs = with pkgs.python3Packages; [
+            numpy
+            opencv4
+            pyqt5
+          ];
+        };
+
+        # Adicionar um app executável
+        apps.default = {
+          type = "app";
+          program = "${self.packages.${system}.default}/bin/hypr-camera";
+        };
       }
     );
 }
